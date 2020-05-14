@@ -6,14 +6,20 @@ from SessionState import get
 
 from restbot.core import config
 
+from starlette.config import Config
+from starlette.datastructures import Secret
+
+config = Config(".env")
+PWD: Secret = config("PASSWORD", cast=Secret)
+
 def check_password():
     session_state = get(password='')
 
-    if session_state.password != 'pwd123':
+    if session_state.password != str(PWD):
         pwd_placeholder = st.sidebar.empty()
         pwd = pwd_placeholder.text_input("Password:", value="", type="password")
         session_state.password = pwd
-        if session_state.password == 'pwd123':
+        if session_state.password == str(PWD):
             pwd_placeholder.empty()
             return True
         elif session_state.password != '':
