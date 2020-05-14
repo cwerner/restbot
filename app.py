@@ -57,7 +57,7 @@ def main():
 
     if st.sidebar.button('Call model'):
         response = requests.post(
-            "http://localhost:8000/api/model/predict",
+            "http://restbot.cwerner.ai:8000/api/model/predict",
             json={
                 "median_income_in_block":median_income_in_block,
                 "median_house_age_in_block":median_house_age_in_block,
