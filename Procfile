@@ -1,2 +1,2 @@
-web: uvicorn restbot.main:app --reload
+web: uvicorn restbot.main:app
 
