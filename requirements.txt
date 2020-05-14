@@ -1,0 +1,9 @@
+requests
+uvicorn
+fastapi
+numpy
+scikit-learn
+joblib
+loguru
+streamlit
+
