@@ -1,4 +1,3 @@
-requests
 gunicorn
 uvicorn
 fastapi
@@ -6,5 +5,4 @@ numpy
 scikit-learn
 joblib
 loguru
-streamlit
 
