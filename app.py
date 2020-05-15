@@ -34,7 +34,7 @@ def main():
     st.write("## House price prediction model (example)")
 
     try:
-        response = requests.get("http://restbot.cwerner.ai:8000/api/health/heartbeat")
+        response = requests.get("http://restbot.cwerner.ai/api/health/heartbeat")
 
         # validate response? HearbeatResult.validate(response.json())    
         status = "alive ❤️" if response.json().get('is_alive') else "dead 💔"
@@ -58,7 +58,7 @@ def main():
 
     if st.sidebar.button('Call model'):
         response = requests.post(
-            "http://restbot.cwerner.ai:8000/api/model/predict",
+            "http://restbot.cwerner.ai/api/model/predict",
             json={
                 "median_income_in_block":median_income_in_block,
                 "median_house_age_in_block":median_house_age_in_block,
