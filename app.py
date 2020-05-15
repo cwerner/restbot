@@ -11,6 +11,7 @@ from starlette.datastructures import Secret
 
 config = Config(".env")
 PWD: Secret = config("PASSWORD", cast=Secret)
+API_KEY: Secret = config("API_KEY", cast=Secret)
 
 def check_password():
     session_state = get(password='')
@@ -33,7 +34,7 @@ def main():
     st.write("## House price prediction model (example)")
 
     try:
-        response = requests.get("http://restbot.cwerner.ai/api/health/heartbeat")
+        response = requests.get("http://localhost:8000/api/health/heartbeat")
 
         # validate response? HearbeatResult.validate(response.json())    
         status = "alive ❤️" if response.json().get('is_alive') else "dead 💔"
@@ -57,7 +58,7 @@ def main():
 
     if st.sidebar.button('Call model'):
         response = requests.post(
-            "http://restbot.cwerner.ai/api/model/predict",
+            "http://localhost:8000/api/model/predict",
             json={
                 "median_income_in_block":median_income_in_block,
                 "median_house_age_in_block":median_house_age_in_block,
@@ -68,7 +69,7 @@ def main():
                 "block_latitude":block_latitude,
                 "block_longitude":block_longitude
             },
-            headers={"token": str(config.API_KEY)}
+            headers={"token": str(API_KEY)}
         )
         
         amount = response.json()["median_house_value"]
